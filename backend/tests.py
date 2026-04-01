@@ -11,8 +11,9 @@ from backend.optimizer_runner import optimize
 
 
 def main() -> None:
-    result = optimize(
+    student_result = optimize(
         {
+            "mode": "student",
             "subjects": [
                 {
                     "name": "Algorithms",
@@ -48,10 +49,26 @@ def main() -> None:
             "endHour": 19,
         }
     )
-    assert "selected" in result
-    assert "schedule" in result
-    assert "paretoFrontier" in result
-    print("Backend smoke test passed")
+    assert student_result["mode"] == "student"
+    assert student_result["selected"]
+    assert student_result["schedule"]
+
+    corporate_result = optimize(
+        {
+            "mode": "corporate",
+            "jobs": [
+                {"name": "ClientCall", "start": 9, "end": 11, "profit": 8, "priority": 5, "stress": 3},
+                {"name": "QuarterlyReport", "start": 10, "end": 13, "profit": 9, "priority": 4, "stress": 4},
+                {"name": "BudgetReview", "start": 13, "end": 15, "profit": 7, "priority": 4, "stress": 2},
+                {"name": "TeamWorkshop", "start": 15, "end": 17, "profit": 6, "priority": 5, "stress": 2},
+            ],
+            "lambda": 0.5,
+        }
+    )
+    assert corporate_result["mode"] == "corporate"
+    assert corporate_result["selected"]
+    assert corporate_result["schedule"]
+    print("Backend smoke test passed for student and corporate modes")
 
 
 if __name__ == "__main__":
