@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optimal Course Scheduler</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Decision Support System</p>
+        <h1>Optimal Course Scheduler</h1>
+        <p class="hero-copy">
+          Balance academic value, cognitive load, and time constraints with dynamic programming,
+          Pareto trade-offs, and an interactive study plan.
+        </p>
+      </div>
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <span id="engineBadge">Engine: loading</span>
+          <strong id="healthStatus">Checking backend</strong>
+        </div>
+        <div class="hero-stat">
+          <span>Optimization style</span>
+          <strong>DP + Pareto + Schedule packing</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel control-panel">
+        <div class="section-head">
+          <h2>Course Input</h2>
+          <button id="seedBtn" class="ghost-btn" type="button">Load Demo Data</button>
+        </div>
+
+        <form id="courseForm" class="course-form">
+          <input id="name" name="name" type="text" placeholder="Course name" required />
+          <input id="credits" name="credits" type="number" min="1" max="10" value="3" required />
+          <input id="time" name="time" type="number" min="1" max="40" value="4" required />
+          <input id="difficulty" name="difficulty" type="number" min="1" max="5" value="3" required />
+          <input id="importance" name="importance" type="number" min="1" max="5" value="3" required />
+          <input id="deadlineDays" name="deadlineDays" type="number" min="1" max="60" value="7" required />
+          <button class="primary-btn" type="submit">Add Course</button>
+        </form>
+
+        <div class="controls-grid">
+          <label>
+            <span>Difficulty Weight λ</span>
+            <input id="lambda" type="range" min="0" max="2" step="0.1" value="0.6" />
+            <strong id="lambdaValue">0.6</strong>
+          </label>
+          <label>
+            <span>Total Study Time (hours)</span>
+            <input id="maxTime" type="number" min="1" max="80" value="18" />
+          </label>
+          <label>
+            <span>Daily Hours</span>
+            <input id="dailyHours" type="number" min="1" max="12" value="4" />
+          </label>
+          <label>
+            <span>Session Minutes</span>
+            <input id="sessionMinutes" type="number" min="30" max="180" step="15" value="60" />
+          </label>
+          <label>
+            <span>Break Minutes</span>
+            <input id="breakMinutes" type="number" min="0" max="60" step="5" value="15" />
+          </label>
+          <label>
+            <span>Study Window Start</span>
+            <input id="startHour" type="number" min="0" max="22" value="9" />
+          </label>
+          <label>
+            <span>Study Window End</span>
+            <input id="endHour" type="number" min="1" max="24" value="20" />
+          </label>
+        </div>
+
+        <button id="optimizeBtn" class="primary-btn wide-btn" type="button">Optimize Schedule</button>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="section-head">
+          <h2>Courses</h2>
+          <span id="courseCount">0 courses</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Credits</th>
+                <th>Time</th>
+                <th>Difficulty</th>
+                <th>Importance</th>
+                <th>Deadline</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="courseTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="section-head">
+          <h2>Optimization Summary</h2>
+          <span id="resultMeta">Awaiting optimization</span>
+        </div>
+        <div id="summaryCards" class="summary-grid"></div>
+        <div class="result-columns">
+          <div>
+            <h3>Selected Courses</h3>
+            <div id="selectedList" class="chip-list empty-state">No result yet</div>
+          </div>
+          <div>
+            <h3>Deferred Courses</h3>
+            <div id="rejectedList" class="chip-list empty-state">No result yet</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel pareto-panel">
+        <div class="section-head">
+          <h2>Pareto Frontier</h2>
+          <span>Credits + importance vs. difficulty and time</span>
+        </div>
+        <div id="paretoChart" class="pareto-chart empty-state">Run optimization to see trade-offs</div>
+      </section>
+
+      <section class="panel schedule-panel">
+        <div class="section-head">
+          <h2>Study Schedule</h2>
+          <span>Break-aware session packing</span>
+        </div>
+        <div id="scheduleView" class="schedule-grid empty-state">Run optimization to generate a schedule</div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
