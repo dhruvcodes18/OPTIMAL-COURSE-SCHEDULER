@@ -47,22 +47,58 @@
         </div>
 
         <form id="studentForm" class="course-form visible-form">
-          <input id="studentName" name="name" type="text" placeholder="Course name" required />
-          <input id="credits" name="credits" type="number" min="1" max="10" value="3" required />
-          <input id="time" name="time" type="number" min="1" max="40" value="4" required />
-          <input id="difficulty" name="difficulty" type="number" min="1" max="5" value="3" required />
-          <input id="importance" name="importance" type="number" min="1" max="5" value="3" required />
-          <input id="deadlineDays" name="deadlineDays" type="number" min="1" max="60" value="7" required />
+          <label>
+            <span>Course Name</span>
+            <input id="studentName" name="name" type="text" placeholder="Enter course name" required />
+          </label>
+          <label>
+            <span>Credits</span>
+            <input id="credits" name="credits" type="number" min="1" max="10" value="3" required />
+          </label>
+          <label>
+            <span>Study Hours</span>
+            <input id="time" name="time" type="number" min="1" max="40" value="4" required />
+          </label>
+          <label>
+            <span>Difficulty</span>
+            <input id="difficulty" name="difficulty" type="number" min="1" max="5" value="3" required />
+          </label>
+          <label>
+            <span>Importance</span>
+            <input id="importance" name="importance" type="number" min="1" max="5" value="3" required />
+          </label>
+          <label>
+            <span>Deadline (Days)</span>
+            <input id="deadlineDays" name="deadlineDays" type="number" min="1" max="60" value="7" required />
+          </label>
           <button class="primary-btn" type="submit">Add Course</button>
         </form>
 
         <form id="corporateForm" class="course-form hidden-form">
-          <input id="jobName" name="name" type="text" placeholder="Job name" required />
-          <input id="jobStart" name="start" type="number" min="0" max="23" value="9" required />
-          <input id="jobEnd" name="end" type="number" min="1" max="24" value="11" required />
-          <input id="profit" name="profit" type="number" min="1" max="20" value="8" required />
-          <input id="priority" name="priority" type="number" min="1" max="5" value="4" required />
-          <input id="stress" name="stress" type="number" min="1" max="5" value="3" required />
+          <label>
+            <span>Job Name</span>
+            <input id="jobName" name="name" type="text" placeholder="Enter job name" required />
+          </label>
+          <label>
+            <span>Start Hour</span>
+            <input id="jobStart" name="start" type="number" min="0" max="23" value="9" required />
+          </label>
+          <label>
+            <span>End Hour</span>
+            <input id="jobEnd" name="end" type="number" min="1" max="24" value="11" required />
+          </label>
+          <label>
+            <span>Profit</span>
+            <input id="profit" name="profit" type="number" min="1" max="20" value="8" required />
+          </label>
+          <label>
+            <span>Priority</span>
+            <input id="priority" name="priority" type="number" min="1" max="5" value="4" required />
+          </label>
+          <label>
+            <span>Stress</span>
+            <input id="stress" name="stress" type="number" min="1" max="5" value="3" required />
+          </label>
           <button class="primary-btn" type="submit">Add Job</button>
         </form>
 
@@ -153,3 +189,4 @@
   <script type="module" src="/app.js"></script>
 </body>
 </html>
+
